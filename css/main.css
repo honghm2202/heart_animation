@@ -206,3 +206,36 @@ img {
   mask-border: var(--_m);
   clip-path: polygon(-41% 0, 50% 91%, 141% 0);
 }
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.waviy {
+  /* position: relative; */
+  position: relative !important;
+  top: -40px;
+}
+.waviy span {
+  position: relative;
+  display: inline-block;
+  font-size: 50px;
+  color: #fff;
+  text-transform: uppercase;
+  animation: flip 2s infinite;
+  animation-delay: calc(0.2s * var(--i));
+}
+@keyframes flip {
+  0%,
+  80% {
+    transform: rotateY(360deg);
+  }
+}

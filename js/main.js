@@ -21,8 +21,7 @@ class Particle1 {
     this.canvas = canvas;
     this.life = 1000 + Math.random() * 3000;
 
-    this.x =
-      $(window).width() / 2 + (Math.random() * 20 - Math.random() * 20);
+    this.x = $(window).width() / 2 + (Math.random() * 20 - Math.random() * 20);
     this.y = $(window).height();
     this.s = 2 + Math.random();
     this.w = $(window).width();
@@ -32,7 +31,7 @@ class Particle1 {
     this.color = "#ff417d";
 
     this.ID = setInterval(
-      function() {
+      function () {
         microparticles.push(
           new microParticle(c1.context, {
             x: this.x,
@@ -44,7 +43,7 @@ class Particle1 {
     );
 
     setTimeout(
-      function() {
+      function () {
         clearInterval(this.ID);
       }.bind(this),
       this.life
@@ -54,21 +53,26 @@ class Particle1 {
   render() {
     this.canvas.beginPath();
     this.canvas.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-    // this.canvas.lineWidth = 2;
+    this.canvas.lineWidth = 2;
     this.canvas.shadowOffsetX = 0;
     this.canvas.shadowOffsetY = 0;
-    // this.canvas.shadowBlur = 6;
+    this.canvas.shadowBlur = 6;
     this.canvas.shadowColor = "#000000";
     this.canvas.fillStyle = this.color;
     this.canvas.fill();
+    // this.context.arc(75, 75, 50, 0, Math.PI * 2, true); // Outer circle
+    // this.context.moveTo(110, 75);
+    // this.context.arc(75, 75, 35, 0, Math.PI, false); // Mouth (clockwise)
+    // this.context.moveTo(65, 65);
+    // this.context.arc(60, 65, 5, 0, Math.PI * 2, true); // Left eye
+    // this.context.moveTo(95, 65);
+    // this.context.arc(90, 65, 5, 0, Math.PI * 2, true);
     this.canvas.closePath();
   }
 
   move() {
     this.x -=
-      this.direction *
-      Math.sin(this.progress / (this.random1 * 430)) *
-      this.s;
+      this.direction * Math.sin(this.progress / (this.random1 * 430)) * this.s;
     this.y -= Math.cos(this.progress / this.h) * this.s;
 
     if (this.x < 0 || this.x > this.w - this.radius) {
@@ -134,7 +138,7 @@ class microParticle {
 var random_life = 1000;
 
 setInterval(
-  function() {
+  function () {
     particles.push(new Particle1(canvas));
     random_life = 2000 * Math.random();
   }.bind(this),
@@ -166,10 +170,10 @@ function blur(ctx, canvas, amt) {
 
 function update() {
   clear();
-  particles = particles.filter(function(p) {
+  particles = particles.filter(function (p) {
     return p.move();
   });
-  microparticles = microparticles.filter(function(mp) {
+  microparticles = microparticles.filter(function (mp) {
     return mp.move();
   });
   requestAnimationFrame(update.bind(this));

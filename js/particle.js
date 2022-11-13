@@ -214,7 +214,9 @@ var ParticlePool = (function () {
       point = to(t);
       context.lineTo(point.x, point.y);
     }
+
     context.closePath();
+
     // create the fill
     context.fillStyle = "#f50b02";
     context.fill();
